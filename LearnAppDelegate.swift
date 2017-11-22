@@ -78,42 +78,61 @@ class LAppDelegate: UIResponder, UIApplicationDelegate {
         MobClick.start(withConfigure: config)
     }
     
-    func application() -> Bool {
-        
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey  : Any] = [:]) -> Bool {
+        let result = UMSocialManager.default().handleOpen(url)
+        if result {
+            
+        }
+        return result
     }
     
     // 初始化广告管理选项
     fileprivate func setupADManager() {
-        
+        JFAdConfiguration.shared.config(
+            applicationId: "ca-app-pub-3941303619697740~9852864912",
+            interstitialId: "ca-app-pub-3941303619697740/9066705318",
+            bannerId: "ca-app-pub-3941303619697740/2329598119",
+            timeInterval: 120)
     }
     
     /**
     配置保存壁纸选项
     */
     fileprivate func setupSaveWallPaper() {
-        
+        JFNetworkTools.shareNetworkTools.checkSaveState { (on) in
+            self.on = on
+            JFWallPaperTool.shareInstance().on = on
+        }
     }
     
     /**
     配置全局样式
     */
     fileprivate func setupGlobalStyle() {
-        
+       
+        if #available(iOS 11.0, *) {
+            UIScrollView.appearance().contentInsetAdjustmentBehavior = .never
+        }
+        UIScrollView.appearance().alwaysBounceVertical = true
+        UITableView.appearance().estimatedRowHeight = 0
+        UITableView.appearance().estimatedSectionHeaderHeight = 0
+        UITableView.appearance().estimatedSectionFooterHeight = 0
+        UIApplication.shared.isStatusBarHidden = false
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+        JFProgressHUD.setupHUD()
     }
     
     /**
     加载默认根控制器
     */
     fileprivate func loadViewController() {
-        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.backgroundColor = UIColor.white
+        window?.rootViewController = JFNavigationController(rootViewController: JFHomeViewController())
+        window?.makeKeyAndVisible()
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return true
     }
 }
-
-
-
-
-
