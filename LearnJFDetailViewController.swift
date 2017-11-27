@@ -190,31 +190,97 @@ class JFDetailViewController: UIViewController, JFContextSheetDelegate {
         }
     }
     
+    // 能否能够显示分享视图
+    //
+    // Return ture则显示
+    fileprivate func isShouldShowShareView() -> Bool {
+        if !UserDefaults.standard.bool(forKey: "isShouldSave") && !
+            UserDefaults.standard.bool(forKey: "isUpdatingVersion") {
+            return true
+        }
+        return true
+    }
     
+    // 分享视图
+    fileprivate func showShareView() {
+        let alertC = UIAlertController(title: "第一次操作需要先分享一次哦", message: "独乐乐不如众乐乐，好东西要分享给朋友们哦！跪谢支持", preferredStyle: .alert)
+        alertC.addAction(UIAlertAction(title: "立即分享", style: .default, handler: { [weak self] (_) in
+            UMSocialUIManager.showShareMenuViewInWindow { (platformType, userInfo) in
+                let messageObject = UMSocialMessageObject()
+                let shareObject = UMShareWebpageObject.shareObject(withTitle: "海量剑三手机壁纸免费下载", descr: "您是否也是剑三迷呢，您是否喜欢在手机上设置剑三壁纸呢，快使用剑三壁纸库吧", thumImage: UIImage(named: "app_icon"))
+                shareObject?.webpageUrl = "https://itunes.apple.com/app/id\(APPLE_ID)"
+                messageObject.shareObject = shareObject
+                
+                UMSocialManager.default().share(to: platformType, messageObject: messageObject, currentViewController: self) { (data, error) in
+                    UserDefaults.standard.set(true, forKey: "isShouldSave")
+                    JFProgressHUD.showSuccessWithStatus("羞答答，谢谢支持哦")
+                }
+            }
+        }))
+        alertC.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+        present(alertC, animated: true, completion: nil)
+        return
+    }
+    
+    /**
+     保存图片到相册回调
+    */
+    func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject) {
+        if error != nil {
+            JFProgressHUD.showErrorWithStatus("保存失败")
+        } else {
+            JFProgressHUD.showSuccessWithStatus("保存成功")
+        }
+    }
+    
+    // MARK: - 懒加载
+    // 展示的壁纸图片
+    fileprivate lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.frame = SCREEN_BOUNDS
+        self.view.addSubview(imageView)
+        return imageView
+    }()
+    
+    // 触摸屏幕后弹出视图
+    fileprivate lazy var contextSheet: JFContextSheet = {
+        let contextItem1 = JFContextItem(itemName: "返回", itemIcon: "content_icon_back")
+        let contextItem2 = JFContextItem(itemName: "预览", itemIcon: "content_icon_preview")
+        let contextItem3 = JFContextItem(itemName: "设定", itemIcon: "content_icon_set")
+        let contextItem4 = JFContextItem(itemName: "下载", itemIcon: "content_icon_download")
+        let contextItem5 = JFContextItem(itemName: "收藏", itemIcon: "content_icon_star")
+        
+        // 选项数组
+        var items = [contextItem1, contextItem2, contextItem3, contextItem4, contextItem5]
+        
+        if !(UIApplication.shared.delegate as! AppDelegate).on {
+            items.remove(at: 2)
+        }
+        
+        // 选项视图
+        let contextSheet = JFContextSheet(items: items)
+        contextSheet.delegate = self
+        return contextSheet
+    }()
+    
+    // 预览滚动视图
+    fileprivate lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView(frame: SCREEN_BOUNDS)
+        scrollView.backgroundColor = UIColor.clear
+        scrollView.isPagingEnabled = true
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.contentSize = CGSize(width: SCREEN_WIDTH * 2, height: SCREEN_HEIGHT)
+        
+        // 第一张背景
+        let previewImage1 = UIImageView(image: UIImage(named: "preview_cover_clock"))
+        previewImage1.frame = SCREEN_BOUNDS
+        
+        // 第二张背景
+        let previewImage2 = UIImageView(image: UIImage(named: "preview_cover_home"))
+        previewImage2.frame = CGRect(x: SCREEN_WIDTH, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT)
+        
+        scrollView.addSubview(previewImage1)
+        scrollView.addSubview(previewImage2)
+        return scrollView
+    }()
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
