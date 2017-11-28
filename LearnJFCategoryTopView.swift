@@ -12,7 +12,7 @@ protocol JFCategoryTopViewDelegate {
     func didTappedLeftBarButton()
 }
 
-class LearnJFCategoryTopView: UIViewController {
+class LearnJFCategoryTopView: UIView {
     
     var delegate: JFCategoryTopViewDelegate?
     
