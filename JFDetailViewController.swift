@@ -84,7 +84,7 @@ class JFDetailViewController: UIViewController, JFContextSheetDelegate {
      唤醒线程
      */
     func dontSleep() {
-        print("起来吧，别日狗了")
+        print("起来吧，别睡觉了")
     }
     
     /**
@@ -286,5 +286,4 @@ class JFDetailViewController: UIViewController, JFContextSheetDelegate {
         scrollView.addSubview(previewImage2)
         return scrollView
     }()
-    
 }
