@@ -137,3 +137,5 @@ extension JFCategoryViewController: UICollectionViewDataSource, UICollectionView
         navigationController?.pushViewController(popularVc, animated: true)
     }
 }
+
+
