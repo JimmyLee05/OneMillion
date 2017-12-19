@@ -28,3 +28,7 @@ func didClickInfoView(isClickMenu: Bool = false) {
         contentView.scrollView.setContentOffset(.zero, animated: true)
     }
 }
+
+
+
+
