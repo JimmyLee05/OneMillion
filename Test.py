@@ -40,7 +40,30 @@
         }
     }
 
-    
 }
+
+
+private extension SCDevice.SCLocation.LocType {
+    
+    var typeImage: UIImage? {
+        switch self {
+        case .gps:
+            return UIImage(named: "map_type_gps")
+        case .mobile:
+            return UIImage(named: "map_type_mobile")
+        case .station:
+            return UIImage(named: "map_type_station")
+        default:
+            return nil
+        }
+    }
+}
+
+
+
+
+
+
+
 
 
