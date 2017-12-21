@@ -61,9 +61,3 @@ private extension SCDevice.SCLocation.LocType {
 
 
 
-
-
-
-
-
-
