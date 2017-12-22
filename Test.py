@@ -1,18 +1,16 @@
-// 加入断线位置
-        if mynt != nil && mynt?.coordinate.isNull == false {
-            let disconnectLocation = SCDevice.SCLocation(latitude: mynt!.latitude, longitude: mynt!.longitude, time: mynt!.lastDisconnectTime)
-            sourceLocations.append(disconnectLocation)
-        } else {
-            // 没有位置
-            locationLabel.text  = MTLocalizedString("MYNTSETTING_MAP_NODATA", comment: "没有数据")
-            dateLabel.text      = MTLocalizedString("MYNTSETTING_MAP_NODATA", comment: "没有数据")
+@objc func didClickNavigationButton(_ sender: AnyObject) {
+        if selectLocation?.coordinate.isNull == false {
+            MapNavigationKit.shared.selectMapApp(fromCoordinate: userCoordinate,
+                                                 toCoordinate: selectLocation!.coordinate,
+                                                 view: view)
         }
+    }
 
-//加入断线位置
-        if mynt != nil && mynt?.coordinate.isNull == false {
-            let disconnectLocation = SCDevice.SCLocation(latitude: mynt!.latitude, longitude: mynt!.longitude, time: mynt!.lastDisconnectTime)
-        } else {
-            // 没有位置
-            locationLabel.text = MTLocalizedString("MYNTSETTING_MAP_NODATA", comment: "没有数据")
-            dateLabel.text     = MTLocalizedString("MYNTSETTING_MAP_NODATA", comment: "没有数据")
+
+@objc func didClickNavigationButton(_ sender: AnyObject) {
+        if selectLocation?.coordinate.isNull == false {
+            MapNavigationKit.shared.selectMapApp(fromCoordinate: userCoordinate,
+                                                 toCoordinate: selectLocation!.coordinate,
+                                                 view: view)
         }
+}
