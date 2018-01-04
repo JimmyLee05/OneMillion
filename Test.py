@@ -1,23 +1,40 @@
-if status == .denied || status == .restricted {
-            DialogManager.shared.show(title: MTLocalizedString("SERVICE_CLOSED_TITLE", comment: "服务已关闭"),
-                                      message: String(format: MTLocalizedString("SERVICE_CLOSED_MESSAGE", comment: "服务已关闭"),
-                                                      MTLocalizedString("GALLERY", comment: "相册")),
-                                      buttonString: MTLocalizedString("APP_SETTINGS", comment: "设置"),
-                                      clickOkHandler: { (dialog) in
-                                        UIApplication.openSystemSetting()
-            })
-            return
+func formatTime(time: Int, ignoreState: Bool = false) -> String {
+        // 不满60分钟   xxx minute ago
+        // 不满24小时   xxx hour ago
+        // 超过24小时   xxx day ago
+        let minute: Double = 60
+        let hour: Double   = minute * 60
+        let day: Double   = hour * 24
+        let dValue: Double = Date().timeIntervalSince1970 - Double(time)
+
+        if state == .connected && !ignoreState {
+            return MTLocalizedString("DISCONNECT_TIME_NOW", comment: "now")
         }
 
-
-if status == .denied || status == .restricted {
-            DialogManager.shared.show(title: MTLocalizedString("SERVICE_CLOSED_TITLE", comment: "服务已关闭")，
-                                      message: String(format: MTLocalizedString("SERVICE_CLOSED_MESSAGE", comment: "服务已关闭"),
-                                                      MTLocalizedString("GALLERY", comment: "相册")),
-                                      buttonString: MTLocalizedString("APP_SETTINGS", comment: "设置"),
-                                      clickOkHandler: { (dialog) in
-                                        UIApplication.openSystemSetting()
-            })
-            return
+        if time <= 0 {
+            return ""
         }
+        if dValue <= minute {
+            return MTLocalizedString("DISCONNECT_TIME_NOW", comment: "now")
+        }
+        switch dValue {
+        case 0..<hour:
+            return String(format: MTLocalizedString("DISCONNECT_TIME_MINUTE", comment: "分钟"), dValue / minute)
+        case hour..<day:
+            return String(format: MTLocalizedString("DISCONNECT_TIME_HOUR", comment: "小时"), dValue / hour)
+        default:
+            return String(format: MTLocalizedString("DISCONNECT_TIME_DAY", comment: "天"), dValue / day)
+        }
+    }
+
+func format(time: Int, ignoreState: Bool = false) -> String {
+    // 不满60分钟 xxx minute ago
+    // 不满24小时 xxx hour ago
+    // 超过24小时 xxx day ago
+    let minute: Double = 60
+    let hour: Double   = minute * 60
+    let day: Double    = hour * 24
+    let dValue: Double = Date().timeIntervalSince1970 - Double(time)
+
+    
 }
