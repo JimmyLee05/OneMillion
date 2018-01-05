@@ -1,21 +1,22 @@
- var selectedType: SelectedType = .left {
-        didSet {
-            let selectedLeft = selectedType == .left
-            
-            leftView.backgroundColor = selectedLeft ? UIColor(red: 0.91, green: 0.91, blue: 0.91, alpha: 1.00) : UIColor.clear
-            rightView.backgroundColor = !selectedLeft ? UIColor(red: 0.91, green: 0.91, blue: 0.91, alpha: 1.00) : UIColor.clear
-            leftHookImageView.isHidden  = !selectedLeft
-            rightHookImageView.isHidden = selectedLeft
+if UIApplication.shared.applicationState == .background {
+            // 后台进行推送
+            let message = String(format: MTLocalizedString("MYNTSETTING_INFO_LOWPOWER_DIALOG_MESSAGE", comment: ""), mynt.name)
+            STJPushKit.shared().pushLocalNotification(nil,
+                                                      subtitle: nil,
+                                                      body: message,
+                                                      identifier: mynt.sn,
+                                                      sound: nil,
+                                                      userInfo: ["sn": mynt.sn])
         }
-    }
 
-var selectedType: SelectedType = .left {
-        didSet {
-            let selectedLeft = selectedType == .left
 
-            leftView.backgroundColor    = selectedLeft ? UIColor(red: 0.91, green: 0.91, blue: 0.91, alpha: 1.00) : UIColor.clear
-            rightView.backgroundColor   = !selectedLeft ? UIColor(red: 0.91, green: 0.91, blue: 0.91, alpha: 1.00) : UIColor.clear
-            leftHookImageView.isHidden  = !selectedLeft
-            rightHookImageView.isHidden = selectedLeft
-        }
+if UIApplication.shared.applicationState == .background {
+            // 后台进行推送
+            let message = String(format: MTLocalizedString("MYNTSETTING_INFO_LOWPOWER_DIALOG_MESSAGE", comment: ""), mynt.name)
+            STJPushKit.shared().pushLocalNotification(nil,
+                                                      subtitle: nil,
+                                                      body: message,
+                                                      identifier: mynt.sn,
+                                                      sound: nil,
+                                                      userInfo: ["sn": mynt.sn])
 }
