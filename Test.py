@@ -1,17 +1,13 @@
-public static func found(locations: [SCDevice.SCFoundLocation],
-                             success: @escaping () -> Void,
-                             failure: SCFailedHandler) {
-        let param: [String: Any] = ["locations": locations.jsonString]
-        SCAPI.post(url: "mynt/device/found", param: param, success: { _ in
-            success()
+public static func deviceList(_ success: @escaping (_ devices: [SCDevice]) -> Void,
+                                  failure: SCFailedHandler) {
+        SCAPI.post(url: "mynt/device/list", param: [:], success: { json in
+            success(json["device"].arrayValue.map({$0.device}))
         }, failure: failure)
     }
 
-public static func found(locations: [SCDevice.SCFoundLocation],
-                            success: @escaping () -> Void,
-                            failure: SCFailedHandler) {
-        let param: [String: Any] = ["locations": locations.jsonString]
-        SCAPI.post(url: "mynt/device/found", param: param, success: { _ in
-            success()
+public static func deviceList(_ success: @escaping (_ device: [SCDevice]) -> Void,
+                                    failure: SCFailedHandler) {
+        SCAPI.post(url: "mynt/device/list", param: [:], success: { json in
+            success(json["device"].arrayValue.map({$0.device}))
         }, failure: failure)
 }
