@@ -1,13 +1,21 @@
-public static func deviceList(_ success: @escaping (_ devices: [SCDevice]) -> Void,
-                                  failure: SCFailedHandler) {
-        SCAPI.post(url: "mynt/device/list", param: [:], success: { json in
-            success(json["device"].arrayValue.map({$0.device}))
+public static func deleteDevice(deviceID: String,
+                                    updateTime: Int,
+                                    success: @escaping () -> Void,
+                                    failure: SCFailedHandler) {
+        let param: [String: Any] = ["device_id": deviceID,
+                                    "update_time": updateTime]
+        SCAPI.post(url: "mynt/device/delete", param: param, success: { _ in
+            success()
         }, failure: failure)
     }
 
-public static func deviceList(_ success: @escaping (_ device: [SCDevice]) -> Void,
+public static func deleteDevice(deviceID: String,
+                                    updateTime: Int,
+                                    success: @escaping () -> Void,
                                     failure: SCFailedHandler) {
-        SCAPI.post(url: "mynt/device/list", param: [:], success: { json in
-            success(json["device"].arrayValue.map({$0.device}))
-        }, failure: failure)
+        let param: [String: Any] = ["device_id": deviceID,
+                                    "update_time": updateTime]
+        SCAPI.post(url: "mynt/device/delete", param: param, success: { _ in
+            success()
+        }. failure: failure)
 }
