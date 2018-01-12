@@ -1,29 +1,17 @@
- class func updateToken(token: String) {
-        let user = currentUser()
-        user?.token = token
-        user?.save()
+ public class func changeAvatar(avatar: SCImage,
+                                   success: @escaping (String) -> Void,
+                                   failure: SCFailedHandler) {
+        post(url: "user/avatar", param: [:], image: avatar, success: { json in
+            success(json["avatar"].stringValue)
+            updateAvatar(avatar: json["avatar"].stringValue)
+        }, failure: failure)
     }
 
-class func updateAvatar(avatar: String) {
-    let user = currentUser()
-    user?.avatar = avatar
-    user?.save()
+public class func changeAvatar(avatar: SCImage,
+                               success: @escaping (String) -> Void,
+                               failure: SCFailedHandler) {
+        post(url: "user/avatar", param: [:], image: avatar, success: { json in
+            success(json["avatar"].stringValue)
+            updateAvatar(avatar: json["avatar"].stringValue)
+        }, failure: failure)
 }
-
-class func updateToken(token: String) {
-        let user = currentUser()
-        user?.token = token
-        user?.save()
-}
-
-class func updateAvatar(avatar: String) {
-    let user = currentUser()
-    user?.avatar = avatar
-    user?.save()
-}
-
-
-
-
-
-
