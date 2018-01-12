@@ -1,25 +1,56 @@
-public class func updateUUID(success: @escaping () -> Void,
-                                 failure: SCFailedHandler) {
-        var param: [String: Any] = [:]
-        if let user = tempUser {
-            param["token"] = user.token
-            param["user_id"] = user.userID
-        }
-        post(url: "user/uuid/update", auth: false, param: param, success: { _ in
-            tempUser?.save()
-            success()
+public class func login(email: String,
+                            password: String,
+                            success: @escaping (SCUser, Bool) -> Void,
+                            failure: SCFailedHandler) {
+        let param: [String: Any] = ["email": email,
+                                    "pass": password.md5]
+        post(url: "user/login", auth: false, param: param, success: { (json) in
+            let user = Json2User(email: email, json: json)
+            let check = json["login_device_check"].int
+
+            if !SCloud.shared.isMYNTAPP {
+                user.save()
+                success(user, false)
+                return
+            }
+            if check != nil && check == 1 {
+                tempUser = user
+                success(user, true)
+            } else {
+                user.save()
+                success(user, false)
+            }
         }, failure: failure)
     }
 
-public class func updateUUID(success: @escaping () -> Void,
-                                failure: SCFailedHandler) {
-        var param: [String: Any] = [:]
-        if let user = tempUser {
-            param["token"] = user.token
-            param["user_id"] = user.userID
-        }
-        post(url: "user/uuid/update", auth: false, param: param, success: { _ in
-            tempUser?.save()
-            success()
+public class func login(email: String,
+                        password: String,
+                        success: @escaping (SCUser, Bool) -> Void,
+                        failure: SCFailedHandler) {
+        let param: [String: Any] = ["email": email,
+                                    "pass":password.md5]
+        post(url: "user/login", auth: false, param: param, success: { (json) in
+            let user = Json2User(email: email, json: json)
+            let check = json["login_device_check"].int
+
+            if !SCloud.shared.isMYNTAPP {
+                user.save()
+                success(user, false)
+                return
+            }
+            if check != nil && check == 1 {
+                tempUser = user
+                success(user, true)
+            } else {
+                user.save()
+                success(user, false)
+            }
         }, failure: failure)
 }
+
+
+
+
+
+
+
