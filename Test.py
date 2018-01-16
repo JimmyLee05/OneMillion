@@ -1,17 +1,18 @@
- public class func changeAvatar(avatar: SCImage,
-                                   success: @escaping (String) -> Void,
-                                   failure: SCFailedHandler) {
-        post(url: "user/avatar", param: [:], image: avatar, success: { json in
-            success(json["avatar"].stringValue)
-            updateAvatar(avatar: json["avatar"].stringValue)
-        }, failure: failure)
-    }
+protocol MTCoverFlowViewDelegate: NSObjectProtocol {
 
-public class func changeAvatar(avatar: SCImage,
-                               success: @escaping (String) -> Void,
-                               failure: SCFailedHandler) {
-        post(url: "user/avatar", param: [:], image: avatar, success: { json in
-            success(json["avatar"].stringValue)
-            updateAvatar(avatar: json["avatar"].stringValue)
-        }, failure: failure)
+    func numberOfItemsInCoverFlowViewn(_ collectionView: MTCoverFlowView) -> Int
+
+    func coverFlowView(_ coverFlowView: MTCoverFlowView, cellForItemAt index: Int, cell: MTCoverFlowView.CoverFlowViewCell)
+
+    func coverFlowView(_ coverFlowView: MTCoverFlowView, didSelectItemAt index: Int)
+
+}
+
+protocol MTCoverFlowViewDelegate: NSObjectProtocol {
+    
+    func numberOfItemsInCoverFlowViewn(_ collectionView: MTCoverFlowView) -> Int
+
+    func coverFlowView(_ coverFlowView: MTCoverFlowView, cellForItemAt index: Int, cell: MTCoverFlowView.CoverFlowViewCell)
+
+    func coverFlowView(_ coverFlowView: MTCoverFlowView, didSelectItemAt index: Int)
 }
