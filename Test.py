@@ -1,15 +1,32 @@
-func mynt(mynt: Mynt, didUpdateAlarmState isAlarm: Bool) {
-        if isAlarm {
-            homeListView?.getCell(with: mynt.sn)?.startAlarm()
-        } else {
-            homeListView?.getCell(with: mynt.sn)?.stopAlarm()
+fileprivate extension SCDeviceType {
+    
+    var image: UIImage? {
+        switch self {
+        case .mynt:
+            return UIImage(named: "list_mynt")
+        case .myntGPS:
+            return UIImage(named: "list_gps")
+        case .myntES:
+            return UIImage(named: "list_es")
+        case .none:
+            return nil
         }
     }
+    
+}
 
-func mynt(mynt: Mynt, didUpdateAlarmState isAlarm: Bool) {
-        if isAlarm {
-            homeListView?.getCell(with: mynt.sn)?.startAlarm()
-        } else {
-            homeListView?.getCell(with: mynt.sn)?.stopAlarm()
+fileprivate extension SCDeviceType {
+    
+    var image: UIImage? {
+        switch self {
+        case .mynt:
+            return UIImage(named: "list_mynt")
+        case .myntGPS:
+            return UIImage(named: "list_gps")
+        case .myntES:
+            return UIImage(named: "list_es")
+        case .none:
+            return nil
         }
+    }
 }
