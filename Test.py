@@ -1,29 +1,15 @@
-
-extension HomeViewController {
-
-    // 选中
-    func didSelectTableView(mynt: Mynt?) {
-        MyntInfoViewController.push(mynt: mynt, parentViewController: self)
+func mynt(mynt: Mynt, didUpdateAlarmState isAlarm: Bool) {
+        if isAlarm {
+            homeListView?.getCell(with: mynt.sn)?.startAlarm()
+        } else {
+            homeListView?.getCell(with: mynt.sn)?.stopAlarm()
+        }
     }
 
-}
-
-extension HomeViewController {
-    
-    // 选中
-    func didSelectTableView(mynt: Mynt?) {
-        MyntInfoViewController.push(mynt: mynt, parentViewController: self)
-    }
-}
-
-func myntKit(myntKit: MYNTKit, didAddMynt mynt: Mynt) {
-        // 新增设备
-        homeListView?.tableView.reloadData()
-        updateMapView()
-    }
-
-func myntKit(myntKit: MYNTKit, didAddMynt mynt: Mynt) {
-        // 新增设备
-        homeListView?.tableView.reloadData()
-        updateMapView()
+func mynt(mynt: Mynt, didUpdateAlarmState isAlarm: Bool) {
+        if isAlarm {
+            homeListView?.getCell(with: mynt.sn)?.startAlarm()
+        } else {
+            homeListView?.getCell(with: mynt.sn)?.stopAlarm()
+        }
 }
