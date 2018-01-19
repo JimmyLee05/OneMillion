@@ -1,56 +1,34 @@
-extension HomeListView {
-    
-    /**
-     * 添加箭头指示
-     *
-     **/
-    func addArrowLayer() {
-        if arrowLayer != nil ||
-            !AppConfig.isShowedPairTipsArrow ||
-            AppConfig.isShowedSplash {
-            return
-        }
+override func viewDidLoad() {
+        super.viewDidLoad()
 
-        arrowLayer = AddMyntArrowLayer()
-        arrowLayer?.position    = CGPoint(x: 30, y: -20)
-        arrowLayer?.anchorPoint = CGPoint(x: 0.5, y: 0)
-        viewController?.view.layer.addSublayer(arrowLayer!)
-        arrowLayer?.runAnimation()
+        title = MTLocalizedString("FAQ", comment: "FAQ")
+        setLeftBarButtonItem(image: Resource.Image.Navigation.close)
+
+        webView = WKWebView()
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.backgroundColor = UIColor.clear
+        view.addSubview(webView)
+        webView.fillInSuperView()
+        
+        loadHtml(htmlName)
     }
-    
-    func removeArrowLayer() {
-        arrowLayer?.removeAllAnimations()
-        arrowLayer?.removeFromSuperlayer()
-        arrowLayer = nil
-    }
-    
+
+
+override func viewDidLoad() {
+        super.viewDidLoad()
+
+        title = MTLocalizedString("FAQ", comment: "FAQ")
+        setLeftBarButtonItem(image: Resource.Image.Navigation.close)
+
+        webView = WKWebView()
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.backgroundColor = UIColor.clear
+        view.addSubview(webView)
+        webView.fillInSuperView()
+
+        loadHtml(htmlName)
 }
-
-extension HomeListView {
-    
-    /**
-     * 添加箭头指示
-     *
-     **/
-    func addArrowLayer() {
-        if arrowLayer != nil ||
-            !AppConfig.isShowedPairTipsArrow ||
-            AppConfig.isShowedSplash {
-            return
-        }
-
-        arrowLayer = AddMyntArrowLayer()
-        arrowLayer?.position    = CGPoint(x: 30, y: -20)
-        arrowLayer?.anchorPoint = CGPoint(x: 0.5, y: 0)
-        viewController?.view.layer.addSublayer(arrowLayer!)
-        arrowLayer?.runAnimation()
-    }
-
-    func removeArrowLayer() {
-        arrowLayer?.removeAllAnimations()
-        arrowLayer?.removeFromSuperlayer()
-        arrowLayer = nil
-    }
-}
-
-
