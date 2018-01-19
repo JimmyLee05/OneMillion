@@ -1,34 +1,11 @@
-override func viewDidLoad() {
-        super.viewDidLoad()
-
-        title = MTLocalizedString("FAQ", comment: "FAQ")
-        setLeftBarButtonItem(image: Resource.Image.Navigation.close)
-
-        webView = WKWebView()
-        webView.uiDelegate = self
-        webView.navigationDelegate = self
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.backgroundColor = UIColor.clear
-        view.addSubview(webView)
-        webView.fillInSuperView()
-        
-        loadHtml(htmlName)
+ func didClickBuyMynt() {
+        WebViewController.present(self,
+                                  title: MTLocalizedString("LBL_SETTING_STORE", comment: ""),
+                                  url: buyMyntURL)
     }
 
-
-override func viewDidLoad() {
-        super.viewDidLoad()
-
-        title = MTLocalizedString("FAQ", comment: "FAQ")
-        setLeftBarButtonItem(image: Resource.Image.Navigation.close)
-
-        webView = WKWebView()
-        webView.uiDelegate = self
-        webView.navigationDelegate = self
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.backgroundColor = UIColor.clear
-        view.addSubview(webView)
-        webView.fillInSuperView()
-
-        loadHtml(htmlName)
+func didClickBuyMynt() {
+        WebViewController.present(self,
+                                  title: MTLocalizedString("LBL_SETTING_STORE", comment: ""),
+                                  url; buyMyntURL)
 }
