@@ -1,21 +1,41 @@
- fileprivate func _initInfoView() {
-        /* 添加箭头茅点 */
-        arrowImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+@objc func didClickInfoView() {
+        showEditView = !showEditView
         
-        /* 初始化手势 */
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didClickInfoView))
-        infoView.addGestureRecognizer(tapGestureRecognizer)
+        /*    展开编辑框     */
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(0.4)
+        UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
+        editHeightConstraint.constant = showEditView ? editViewHeight : 0
+        layoutIfNeeded()
+        UIView.commitAnimations()
+        
+        /*    箭头翻转    */
+        let animation = CABasicAnimation(keyPath: "transform.rotation.x")
+        animation.fromValue = showEditView ? 0 : Double.pi
+        animation.toValue   = showEditView ? Double.pi : 0
+        animation.duration  = 0.4
+        animation.isRemovedOnCompletion = false
+        animation.fillMode  = kCAFillModeForwards
+        arrowImageView.layer.add(animation, forKey: "transform.rotation.x")
     }
 
-fileprivate func _initInfoView() {
-        /* 添加箭头茅点 */
-        arrowImageView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+@objc func didClickInfoView() {
+        showEditView = !showEditView
 
-        /* 初始化手势 */
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didClickInfoView))
-        infoView.addGestureRecognizer(tapGestureRecognizer)
+        /* 展开编辑框 */
+        UIView.beginAnimations(nil, context: nil)
+        UIView.setAnimationDuration(0.4)
+        UIView.setAnimationCurve(UIViewAnimationCurve.easeInOut)
+        editHeightConstraint.constant = showEditView ? editViewHeight : 0
+        layoutIfNeeded()
+        UIView.commitAnimations()
+
+        /* 箭头翻转 */
+        let animation = CABasicAnimation(keyPath: "transform.rotation.x")
+        animation.fromValue = showEditView ? 0 : Double.pi
+        animation.toValue   = showEditView ? Double.pi : 0
+        animation.duration  = 0.4
+        animation.isRemovedOnCompletion = false
+        animation.fillMode  = kCAFillModeForwards
+        arrowImageView.layer.add(animation, forKey: "transform.rotation.x")
 }
-
-albumView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didClickEditThumb(tapGestureRecognizer:))))
-
-albumView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didClickEditThumb(tapGestureRecognizer:)))
