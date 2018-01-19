@@ -1,79 +1,55 @@
-class RoundedRectangleMaskLayer: CAShapeLayer {
-
-    override var cornerRadius: CGFloat {
-        didSet {
-            setNeedsDisplay()
-            layoutIfNeeded()
+extension HomeListView {
+    
+    /**
+     * 添加箭头指示
+     *
+     **/
+    func addArrowLayer() {
+        if arrowLayer != nil ||
+            !AppConfig.isShowedPairTipsArrow ||
+            AppConfig.isShowedSplash {
+            return
         }
-    }
-    override var bounds: CGRect {
-        didSet {
-            setNeedsDisplay()
-            layoutIfNeeded()
-        }
-    }
 
-    override init() {
-        super.init()
-        contentsScale = UIScreen.main.scale
-        position = CGPoint.zero
-        anchorPoint = CGPoint.zero
-    }
-
-    override init(layer: Any) {
-        super.init(layer: layer)
+        arrowLayer = AddMyntArrowLayer()
+        arrowLayer?.position    = CGPoint(x: 30, y: -20)
+        arrowLayer?.anchorPoint = CGPoint(x: 0.5, y: 0)
+        viewController?.view.layer.addSublayer(arrowLayer!)
+        arrowLayer?.runAnimation()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func removeArrowLayer() {
+        arrowLayer?.removeAllAnimations()
+        arrowLayer?.removeFromSuperlayer()
+        arrowLayer = nil
     }
-
-    override func draw(in ctx: CGContext) {
-        ctx.setFillColor(UIColor.red.cgColor)
-        let bezierPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius)
-        ctx.addPath(bezierPath.cgPath)
-        ctx.fillPath()
-    }
-
+    
 }
 
-
-class RoundedRectangleMaskLayer: CAShapeLayer {
+extension HomeListView {
     
-    override var cornerRadius: CGFloat {
-        didSet {
-            setNeedsDisplay()
-            layoutIfNeeded()
+    /**
+     * 添加箭头指示
+     *
+     **/
+    func addArrowLayer() {
+        if arrowLayer != nil ||
+            !AppConfig.isShowedPairTipsArrow ||
+            AppConfig.isShowedSplash {
+            return
         }
+
+        arrowLayer = AddMyntArrowLayer()
+        arrowLayer?.position    = CGPoint(x: 30, y: -20)
+        arrowLayer?.anchorPoint = CGPoint(x: 0.5, y: 0)
+        viewController?.view.layer.addSublayer(arrowLayer!)
+        arrowLayer?.runAnimation()
     }
 
-    override var bounds: CGRect {
-        didSet {
-            setNeedsDisplay()
-            layoutIfNeeded()
-        }
-    }
-
-    override init() {
-        super.init()
-        contentsScale = UIScreen.main.scale
-        position = CGPoint.zero
-        anchorPoint = CGPoint.zero
-    }
-
-    override init(layer: Any) {
-        super.init(layer: layer)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func draw(in ctx: CGContext) {
-        ctx.setFillColor(UIColor.red.cgColor)
-        let bezierPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius)
-        ctx.addPath(bezierPath.cgPath)
-        ctx.fillPath()
+    func removeArrowLayer() {
+        arrowLayer?.removeAllAnimations()
+        arrowLayer?.removeFromSuperlayer()
+        arrowLayer = nil
     }
 }
 
