@@ -1,34 +1,15 @@
-enum CellType {
-    case buy
-    case safezone
-    case faq
-    
-    var count: Int {
-        switch self {
-        case .buy:
-            return 1
-        case .faq:
-            return 16
-        default:
-            return 0
-        }
-    }
-    
-}
+// 版本信息
+versionLabel                = UILabel(frame: CGRect(x: 0, y: -80, width: winSize.width, height: 20))
+versionLabel.text           = "\(UIApplication.appName) \(UIApplication.appVersion) + (v\(UIApplication.appBuildVersion))"
+versionLabel.textAlignment  = .center
+versionLabel.textColor      = UIColor.black
+versionLabel.font           = UIFont.boldSystemFont(ofSize: 12)
+tableView.addSubview(versionLabel)
 
-enum CellType {
-    case buy
-    case safezone
-    case faq
-
-    var count: Int {
-        switch self {
-        case .buy:
-            return 1
-        case .faq:
-            return 16
-        default:
-            return 0
-        }
-    }
-}
+// 版本信息
+versionLabel                = UILabel(frame: CGRect(x: 0, y: -80, width: winSize.width, height: 20))
+versionLabel.text           = "\(UIApplication.appName) \(UIApplication.appVersion) + (v\(UIApplication.appBuildVersion))"
+versionLabel.textAlignment  = .center
+versionLabel.textColor      = UIColor.black
+versionLabel.font           = UIFont.boldSystemFont(ofSize: 12)
+tableView.addSubview(versionLabel)
