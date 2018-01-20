@@ -1,36 +1,61 @@
-@objc fileprivate func weiboLinkDetected() {
-        guard let url = UIPasteboard.general.string?.weiboUrl(),
-            url.absoluteString != ignoredLink else {
+extension String {
+    mutating func addMPrefix() {
+        if !contains("/u/") && !contains("/p/") {
             return
         }
-        let alert = WBDAlertController(title: "检测到剪贴板中有微博链接",
-                                       message: url.absoluteString)
-        alert.addAction(UIAlertAction(title: "抓取视频", style: .default, handler: { _ in
-            self.tf.text = url.absoluteString
-            self.parseState = .none
-            self.parse()
-        }))
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: { _ in
-            ignoredLink = url.absoluteString
-        }))
-        present(alert, animated: true, completion: nil)
+        if contains("www.weibo") {
+            self = replacingOccurrences(of: "www.weibo", with: "m.weibo")
+        }
+        if contains("://weibo") {
+            self = replacingOccurrences(of: "://weibo", with: "://m.weibo")
+        }
+    }
+    
+    func weiboUrl() -> URL? {
+        var str = self
+        if !str.hasPrefix("http") {
+            if str.hasPrefix("www.") {
+                str = "http://" + str
+            }else {
+                str = "http://www." + str
+            }
+        }
+        str.addMPrefix()
+        if let url = URL(string: str), str.contains("weibo") {
+            print(str)
+            return url
+        }
+        return nil
+    }
+}
+
+extension String {
+    mutating func addMPrefix() {
+        if !contains("/u/") && !contains("/p/") {
+            return
+        }
+        if contains("www.weibo") {
+            self = replacingOccurrences(of: "www.weibo", with: "m.weibo")
+        }
+        if contains("://weibo") {
+            self = replacingOccurrences(of: "://weibo", with: "://m.weibo")
+        }
     }
 
-@objc fileprivate func weiboLinkDetected() {
-        
-        guard let url = UIPasteboard.general.string?.weiboUrl(),
-            url.absoluteString != ignoredLink else {
-            return
+    func weiboUrl() -> URL? {
+        var str = self
+        if !str.hasPrefix("http") {
+            if str.hasPrefix("www.") {
+                str = "http://" + str
+            } else {
+                str = "http://www." + str
+            }
         }
-        let alert = WBDAlertController(title: "检测到剪切板中有微博链接",
-                                       message: url.absoluteString)
-        alert.addAction(UIAlertAction(title: "抓取视频", style: .default, handler: { _ in
-            self.tf.text = url.absoluteString
-            self.parseState = .none
-            self.parse()
-        }))
-        alert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: { _ in
-            ignoredLink = url.absoluteString
-        }))
-        present(alert, animated: true, completion: nil)
+        str.addMPrefix()
+        if let url = URL(string: str), str.contains("weibo") {
+            print(str)
+            return url
+        }
+        return nil
+    }
 }
