@@ -1,61 +1,52 @@
-extension String {
-    mutating func addMPrefix() {
-        if !contains("/u/") && !contains("/p/") {
-            return
-        }
-        if contains("www.weibo") {
-            self = replacingOccurrences(of: "www.weibo", with: "m.weibo")
-        }
-        if contains("://weibo") {
-            self = replacingOccurrences(of: "://weibo", with: "://m.weibo")
+extension URL {
+    // 获取重定向之后的最终 URL
+    func redirect(completion:@escaping ((URL)->())) {
+        var request = URLRequest(url: self, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
+        request.httpMethod = "HEAD"
+        URLSession().dataTask(with: request) { (data, response, error) in
+            if let url = response?.url {
+                completion(url)
+            }
         }
     }
     
-    func weiboUrl() -> URL? {
-        var str = self
-        if !str.hasPrefix("http") {
-            if str.hasPrefix("www.") {
-                str = "http://" + str
-            }else {
-                str = "http://www." + str
-            }
+    var thumbNai: UIImage? {
+        do {
+            let asset = AVURLAsset(url: self , options: nil)
+            let imgGenerator = AVAssetImageGenerator(asset: asset)
+            imgGenerator.appliesPreferredTrackTransform = true
+            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+            return UIImage(cgImage: cgImage)
+        } catch let error {
+            print(error)
+            return nil
         }
-        str.addMPrefix()
-        if let url = URL(string: str), str.contains("weibo") {
-            print(str)
-            return url
-        }
-        return nil
     }
 }
 
-extension String {
-    mutating func addMPrefix() {
-        if !contains("/u/") && !contains("/p/") {
-            return
-        }
-        if contains("www.weibo") {
-            self = replacingOccurrences(of: "www.weibo", with: "m.weibo")
-        }
-        if contains("://weibo") {
-            self = replacingOccurrences(of: "://weibo", with: "://m.weibo")
+extension URL {
+    
+    // 获取重定向之后的最终的URL
+    func redirect(completion:@escaping ((URL) -> ())) {
+        var request = URLRequest(url: self, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
+        request.httpMethod = "HEAD"
+        URLSession().dataTask(with: request) { (data, response, error) in
+            if let url = response?.url {
+                completion(url)
+            }
         }
     }
 
-    func weiboUrl() -> URL? {
-        var str = self
-        if !str.hasPrefix("http") {
-            if str.hasPrefix("www.") {
-                str = "http://" + str
-            } else {
-                str = "http://www." + str
-            }
+    var thumbNai: UIImage? {
+        do {
+            let asset = AVURLAsset(url: self, options: nil)
+            let imgGenerator = AVAssetImageGenerator(asset: asset)
+            imgGenerator.appliesPreferredTrackTransform = true
+            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+            return UIImage(cgImage: cgImage)
+        } catch let error {
+            print(error)
+            return nil
         }
-        str.addMPrefix()
-        if let url = URL(string: str), str.contains("weibo") {
-            print(str)
-            return url
-        }
-        return nil
     }
 }
