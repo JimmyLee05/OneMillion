@@ -1,52 +1,42 @@
-extension URL {
-    // 获取重定向之后的最终 URL
-    func redirect(completion:@escaping ((URL)->())) {
-        var request = URLRequest(url: self, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
-        request.httpMethod = "HEAD"
-        URLSession().dataTask(with: request) { (data, response, error) in
-            if let url = response?.url {
-                completion(url)
+extension UITextField {
+    
+    func shimmerOrStop() {
+        if let superview = self.superview, superview.isKind(of: FBShimmeringView.classForCoder()) {
+            if let text = self.text, text != "" {
+                (superview as? FBShimmeringView)?.isShimmering = false
+            }else {
+                (superview as? FBShimmeringView)?.isShimmering = true
             }
+        }else {
+            let shimmerView = FBShimmeringView()
+            self.superview?.insertSubview(shimmerView, belowSubview: self)
+            shimmerView.snp.makeConstraints({
+                $0.edges.equalTo(self)
+            })
+            shimmerView.contentView = self
+            shimmerView.isShimmering = true
         }
     }
     
-    var thumbNai: UIImage? {
-        do {
-            let asset = AVURLAsset(url: self , options: nil)
-            let imgGenerator = AVAssetImageGenerator(asset: asset)
-            imgGenerator.appliesPreferredTrackTransform = true
-            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
-            return UIImage(cgImage: cgImage)
-        } catch let error {
-            print(error)
-            return nil
-        }
-    }
 }
 
-extension URL {
+extension UITextField {
     
-    // 获取重定向之后的最终的URL
-    func redirect(completion:@escaping ((URL) -> ())) {
-        var request = URLRequest(url: self, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 10)
-        request.httpMethod = "HEAD"
-        URLSession().dataTask(with: request) { (data, response, error) in
-            if let url = response?.url {
-                completion(url)
+    func  shimmerOrStop() {
+        if let superview = self.superview, superview.isKind(of: FBShimmeringView.classForCoder()) {
+            if let text = self.text, text != "" {
+                (superview as? FBShimmeringView)?.isShimmering = false
+            } else {
+                (superview as? FBShimmeringView)?.isShimmering = true
             }
-        }
-    }
-
-    var thumbNai: UIImage? {
-        do {
-            let asset = AVURLAsset(url: self, options: nil)
-            let imgGenerator = AVAssetImageGenerator(asset: asset)
-            imgGenerator.appliesPreferredTrackTransform = true
-            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
-            return UIImage(cgImage: cgImage)
-        } catch let error {
-            print(error)
-            return nil
+        } else {
+            let shimmerView = FBShimmeringView()
+            self.superview?.insertSubview(shimmerView, belowSubview: self)
+            shimmerView.snp.makeConstraints({
+                $0.edges.equalTo(self)
+            })
+            shimmerView.contentView = self
+            shimmerView.isShimmering = true
         }
     }
 }
