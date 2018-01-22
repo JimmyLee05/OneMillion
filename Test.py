@@ -1,42 +1,63 @@
-class MoreAlertController: WBDAlertController {
-    convenience init(forVC vc: ViewController) {
-        self.init(title: nil, message: nil)
-        // 如何使用
-        self.addAction(UIAlertAction(title: "🤔 如何使用", style: .default, handler: { _ in
-            let how = WBDAlertController(title: "使用教程", message: "这是一个可以下载微博中的视频的 app\n你可以在微博中找到一条带有视频的微博  或者一个发过视频的博主 在微博页面右上角【复制链接】\n再回到这个 app\n你就可以下载里面的视频了~")
-            how.addAction(UIAlertAction(title: "观看视频教程", style: .default, handler: { _ in
-                let playerVC = AVPlayerViewController()
-                playerVC.player = AVPlayer(
-                    url: URL(string: "http://7xssu3.com1.z0.glb.clouddn.com/wbdownloaderTutorial2.MP4")!)
-                vc.present(playerVC, animated: true, completion: {
-                    playerVC.player?.play()
-                })
-            }))
-            how.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-            vc.present(how, animated: true, completion: nil)
-        }))
-        self.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+extension String {
+    mutating func addMPrefix() {
+        if !contains("/u/") && !contains("/p/") {
+            return
+        }
+        if contains("www.weibo") {
+            self = replacingOccurrences(of: "www.weibo", with: "m.weibo")
+        }
+        if contains("://weibo") {
+            self = replacingOccurrences(of: "://weibo", with: "://m.weibo")
+        }
+    }
+    
+    func weiboUrl() -> URL? {
+        var str = self
+        if !str.hasPrefix("http") {
+            if str.hasPrefix("www.") {
+                str = "http://" + str
+            }else {
+                str = "http://www." + str
+            }
+        }
+        str.addMPrefix()
+        if let url = URL(string: str), str.contains("weibo") {
+            print(str)
+            return url
+        }
+        return nil
     }
 }
 
+// 
 
-class MoreAlertController: WBDAlertController {
-    convenience init(forVC vc: ViewController) {
-        self.init(title: nil, message: nil)
-        // How to use
-        self.addAction(UIAlertAction(title: "🤔 如何使用", style: .default, handler: { _ in
-            let how = WBDAlertController(title: "使用教程", message: "这是一个可以下载微博中的视频的 app\n你可以在微博中找到一条带有视频的微博  或者一个发过视频的博主 在微博页面右上角【复制链接】\n再回到这个 app\n你就可以下载里面的视频了~")
-            how.addAction(UIAlertAction(title: "观看视频教程", style: .default, handler: { _ in
-                let playerVC = AVPlayerViewController()
-                playerVC.player = AVPlayer(
-                    url: URL(string: "http://7xssu3.com1.z0.glb.clouddn.com/wbdownloaderTutorial2.MP4")!)
-                vc.present(playerVC, animated: true, completion: {
-                    playerVC.player?.play()
-                })
-            }))
-            how.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-            vc.present(how, animated: true, completion: nil)
-        }))
-        self.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+extension String {
+    mutating func addMPrefix() {
+        if !contains("/u/") && !contains("/p/") {
+            return
+        }
+        if contains("www.weibo") {
+            self = replacingOccurrences(of: "www.weibo", with: "m.weibo")
+        }
+        if contains("//weibo") {
+            self = replacingOccurrences(of: "://weibo", with: "://m.weibo")
+        }
+    }
+
+    funn weiboUrl() -> URL? {
+        var str = self
+        if !str.hasPrefix("http") {
+            if str.hasPrefix("www.") {
+                str = "http://" + str
+            } else {
+                str = "http://www." + str
+            }
+        }
+        str.addMPrefix()
+        if let url = URL(string; str), str.contains("weibo") {
+            print(str)
+            return url
+        }
+        return nil
     }
 }
