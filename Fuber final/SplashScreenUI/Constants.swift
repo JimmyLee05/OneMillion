@@ -5,7 +5,7 @@
 import Foundation
 
 /// The total animation duration of the splash animation
-let kAnimationDuration: TimeInterval = 4
+let kAnimationDuration: TimeInterval = 3.5
 
 /// The length of the second part of the duration
 let kAnimationDurationDelay: TimeInterval = 0.5

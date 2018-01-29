@@ -28,6 +28,7 @@ class TileView: UIView {
   }
   
   func startAnimatingWithDuration(_ duration: TimeInterval, beginTime: TimeInterval,    rippleDelay: TimeInterval, rippleOffset: CGPoint) {
+    
     let timingFunction = CAMediaTimingFunction(controlPoints: 0.25, 0, 0.2, 1)
     let linearFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
     let easeOutFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)

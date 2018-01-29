@@ -34,9 +34,9 @@ class RootContainerViewController: UIViewController {
     view.addSubview(splashViewController.view)
     splashViewController.didMove(toParentViewController: self)
     
-//    delay(2.50) {
-//        self.showMenuNavigationViewController()
-//    }
+    delay(2) {
+        self.showMenuNavigationViewController()
+    }
   }
   
   func showMenuNavigationViewController() {

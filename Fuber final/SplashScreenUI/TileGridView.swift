@@ -65,7 +65,6 @@ extension TileGridView {
     let paraph = NSMutableParagraphStyle()
     //设置行间距
     paraph.lineSpacing = 10
-    //样式属性集合
     let attributes = [NSParagraphStyleAttributeName: paraph]
     label.attributedText = NSAttributedString(string: label.text!, attributes: attributes)
     
@@ -128,7 +127,7 @@ extension TileGridView {
     keyframe.isRemovedOnCompletion = false
     keyframe.keyTimes = [0.0, 0.45, 0.887, 1.0]
     keyframe.values = [0.75, 0.75, 1.0, 1.0]
-    keyframe.beginTime = beginTime
+    keyframe.beginTime = beginTime + 3
     keyframe.timeOffset = kAnimationTimeOffset
     
     containerView.layer.add(keyframe, forKey: "scale")
