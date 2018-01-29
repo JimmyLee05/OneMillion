@@ -1,23 +1,4 @@
 /**
- * Copyright (c) 2016 Razeware LLC
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
  */
 
 import UIKit
@@ -45,8 +26,7 @@ class TileGridView: UIView {
     containerView.center = center
     modelTileView.center = containerView.center
     if let centerTileView = centerTileView {
-      // Custom offset needed for UILabel font
-      let center = CGPoint(x: centerTileView.bounds.midX + 31, y: centerTileView.bounds.midY)
+      let center = CGPoint(x: centerTileView.bounds.midX, y: centerTileView.bounds.midY)
       logoLabel.center = center
     }
   }
@@ -79,12 +59,23 @@ class TileGridView: UIView {
 extension TileGridView {
   
   fileprivate func generateLogoLabel()->UILabel {
+    
     let label = UILabel()
-    label.text = "F         BER"
-    label.font = UIFont.systemFont(ofSize: 50)
+    label.text = "No Lost \nAll Found \nControl Everything"
+    let paraph = NSMutableParagraphStyle()
+    //设置行间距
+    paraph.lineSpacing = 10
+    //样式属性集合
+    let attributes = [NSParagraphStyleAttributeName: paraph]
+    label.attributedText = NSAttributedString(string: label.text!, attributes: attributes)
+    
+    label.font = UIFont.systemFont(ofSize: 28)
+    label.numberOfLines = 0
+    label.textAlignment = NSTextAlignment.center
     label.textColor = UIColor.white
     label.sizeToFit()
     label.center = CGPoint(x: bounds.midX, y: bounds.midY)
+    
     return label
   }
   
