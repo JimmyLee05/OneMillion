@@ -457,7 +457,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVM-XE-rJV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="gNa-UG-Hpw"/>
             </objects>
-            <point key="canvasLocation" x="1514" y="-36"/>
+            <point key="canvasLocation" x="1586" y="-36"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="qps-0Q-RXB">
@@ -603,6 +603,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="9wt-b4-DMR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JXr-36-G6Y" secondAttribute="trailing" id="CdF-bH-RtZ"/>
                                                 <constraint firstItem="JXr-36-G6Y" firstAttribute="centerY" secondItem="gx9-BE-arM" secondAttribute="centerY" id="EFk-cY-vbc"/>
                                                 <constraint firstAttribute="trailing" secondItem="9wt-b4-DMR" secondAttribute="trailing" id="fLr-hr-VXO"/>
                                                 <constraint firstItem="JXr-36-G6Y" firstAttribute="leading" secondItem="gx9-BE-arM" secondAttribute="leadingMargin" id="oZi-Kj-PqX"/>
@@ -632,6 +633,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="sim-o1-BjG" firstAttribute="centerY" secondItem="jRL-kP-Rue" secondAttribute="centerY" id="6HS-aF-0nM"/>
+                                                <constraint firstItem="sim-o1-BjG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="MPd-d5-uko" secondAttribute="trailing" id="Qfm-OP-57y"/>
                                                 <constraint firstAttribute="trailing" secondItem="sim-o1-BjG" secondAttribute="trailing" id="bBe-wm-jwv"/>
                                                 <constraint firstItem="MPd-d5-uko" firstAttribute="leading" secondItem="jRL-kP-Rue" secondAttribute="leadingMargin" id="gTv-WL-NCP"/>
                                                 <constraint firstItem="MPd-d5-uko" firstAttribute="centerY" secondItem="jRL-kP-Rue" secondAttribute="centerY" id="uLK-7N-RmL"/>
@@ -661,6 +663,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="QQJ-es-M64" secondAttribute="trailing" id="2wm-fr-PsF"/>
                                                 <constraint firstItem="QQJ-es-M64" firstAttribute="centerY" secondItem="afe-Gs-g9H" secondAttribute="centerY" id="49F-2g-5m7"/>
+                                                <constraint firstItem="QQJ-es-M64" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ILz-ae-i4t" secondAttribute="trailing" id="EwA-z2-bqs"/>
                                                 <constraint firstItem="ILz-ae-i4t" firstAttribute="centerY" secondItem="afe-Gs-g9H" secondAttribute="centerY" id="XYw-wm-hcp"/>
                                                 <constraint firstItem="ILz-ae-i4t" firstAttribute="leading" secondItem="afe-Gs-g9H" secondAttribute="leadingMargin" id="qTI-wU-YrF"/>
                                             </constraints>
@@ -688,6 +691,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="iA0-Fn-VGy" firstAttribute="leading" secondItem="412-k8-qbb" secondAttribute="leadingMargin" id="Fm2-Ug-waq"/>
+                                                <constraint firstItem="fAO-Sg-fPT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iA0-Fn-VGy" secondAttribute="trailing" id="JRh-jp-YkN"/>
                                                 <constraint firstItem="iA0-Fn-VGy" firstAttribute="centerY" secondItem="412-k8-qbb" secondAttribute="centerY" id="end-1F-Gaq"/>
                                                 <constraint firstItem="fAO-Sg-fPT" firstAttribute="centerY" secondItem="412-k8-qbb" secondAttribute="centerY" id="kVh-ra-3hI"/>
                                                 <constraint firstAttribute="trailing" secondItem="fAO-Sg-fPT" secondAttribute="trailing" id="re3-0K-V7Y"/>
