@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarningsdajfhilkahkfhdajkfhjdksahfjkdhajkfdhajkfhdjsafhjdkdsaDdkjsfkjlDdajklfjkD jdkalfjkDjkdsa() {
+    override func didReceiveMemoryWarningsdajfhilkahkfhdajkfhjdksahfjkdhajkfdhajkfhdjsafhjdkdsaDdkjsfkjlDdajklfjkDjdkalfjkDjkdsa() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
