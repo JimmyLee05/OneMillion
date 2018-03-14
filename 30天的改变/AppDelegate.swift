@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+var needStop = false
 var pomodoroClass = pomodoro()
 
 @UIApplicationMain

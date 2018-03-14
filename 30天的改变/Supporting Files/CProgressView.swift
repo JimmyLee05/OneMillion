@@ -9,8 +9,8 @@
 import UIKit
 
 @IBDesignable class CProgressView: UIView {
-    
-    fileprivate var π: CGFloat = CGFloat(Double.pi)
+
+    fileprivate var PIπ: CGFloat = CGFloat(Double.pi)
     fileprivate var progressCircle = CAShapeLayer()
     fileprivate var realProgressCircle = CAShapeLayer()
     fileprivate var circlePath = UIBezierPath()
@@ -18,7 +18,7 @@ import UIKit
 
     //计算角度
     fileprivate func arc(_ arc: CGFloat) -> CGFloat {
-        let results = ( π * arc ) / 180
+        let results = ( PIπ * arc ) / 180
         return results
     }
 
@@ -26,13 +26,18 @@ import UIKit
     @IBInspectable var progressColor: UIColor = UIColor.green
     @IBInspectable var lineWidth: Float = Float(3.0)
     @IBInspectable var valueProgress: Float = Float()
-    
+
     override func draw(_ rect: CGRect) {
 
         // Create Path for ARC
         let centerPointArc = CGPoint(x: frame.size.width / 2, y: frame.size.height / 2)
         let radiusArc: CGFloat = self.frame.width / 2 * 0.8
-        circlePath = UIBezierPath(arcCenter: centerPointArc, radius: radiusArc, startAngle: arc(-90), endAngle: arc(450), clockwise: true)
+
+        circlePath = UIBezierPath( arcCenter: centerPointArc,
+                                   radius: radiusArc,
+                                   startAngle: arc(-90),
+                                   endAngle: arc(450),
+                                   clockwise: true)
 
         // Define background circle progress
         progressCircle.path = circlePath.cgPath
@@ -52,7 +57,7 @@ import UIKit
         if realProgressCircle.strokeEnd > 0.6666 {
             realProgressCircle.strokeEnd = 0.6666
         }
-        
+
         // Set for sublayer circle progress
         layer.addSublayer(progressCircle)
         layer.addSublayer(realProgressCircle)

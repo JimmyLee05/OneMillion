@@ -33,9 +33,89 @@ class PomodoroViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // 添加手势到View
+        let tapToStop = UITapGestureRecognizer()
+        tapToStop.addTarget(self, action: #selector(PomodoroViewController.stopPomo(_:)))
+        let pressToStart = UILongPressGestureRecognizer()
+        pressToStart.addTarget(self, action: #selector(PomodoroViewController.startPomo(_:)))
+    }
+
     func updateUI() {
         timerView.setNeedsDisplay()
         timeLabel.text = pomodoroClass.timerLabel
     }
 
+    @objc func stopPomo(_ sender: UITapGestureRecognizer) {
+        pomodoroClass.stop()
+    }
+
+    @objc func startPomo(_ sender: UILongPressGestureRecognizer) {
+        readme.isHidden = true
+        if pomodoroClass.pomoMode == 0 {
+            if sender.state == UIGestureRecognizerState.ended {
+                pomodoroClass.playSound(5)
+                if process < 100 {
+                    stopTimer()
+                    processToZero()
+                } else {
+                    pomodoroClass.start()
+                    stopTimer()
+                    timer = Timer.scheduledTimer(timeInterval: 1,
+                                                 target: self,
+                                                 selector: #selector(PomodoroViewController.pomoing(_:)),
+                                                 userInfo: nil,
+                                                 repeats: true)
+                }
+            }
+        }
+    }
+
+    @objc func pomoing(_ timer: Timer) { //调整进度条
+
+    }
+
+    //动画部分Start－－－－－－－－－－
+    func processToZero() {
+        aniDirection = true
+        needStop = true
+        timer = Timer.scheduledTimer(timeInterval: 0.01,
+                                     target: self,
+                                     selector: #selector(PomodoroViewController.processAnimation(_:)),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+
+    func processToFull() {
+        aniDirection = false
+        timer = Timer.scheduledTimer(timeInterval: 0.01,
+                                     target: self,
+                                     selector: #selector(PomodoroViewController.processAnimation(_:)),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+
+    @objc func processAnimation(_ timer: Timer) {
+        if aniDirection {
+            if process >= 0 {
+                process -= 1
+            } else {
+                stopTimer()
+            }
+        } else {
+            if process <= 100 {
+                process += 1
+            } else {
+                stopTimer()
+            }
+        }
+    }
+
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    //动画部分End－－－－－－－－－－
 }
