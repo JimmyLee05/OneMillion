@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8809AD1D205909F1003CD105 /* CProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809AD1C205909F0003CD105 /* CProgressView.swift */; };
+		8809AD1F20590AF3003CD105 /* Pomodoro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809AD1E20590AF3003CD105 /* Pomodoro.swift */; };
 		88C89523205614C0004D8906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C89522205614C0004D8906 /* AppDelegate.swift */; };
 		88C89525205614C0004D8906 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C89524205614C0004D8906 /* ViewController.swift */; };
 		88C89528205614C0004D8906 /* 30DaysOfChange.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88C89526205614C0004D8906 /* 30DaysOfChange.storyboard */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8809AD1C205909F0003CD105 /* CProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CProgressView.swift; sourceTree = "<group>"; };
+		8809AD1E20590AF3003CD105 /* Pomodoro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pomodoro.swift; sourceTree = "<group>"; };
 		88C8951F205614C0004D8906 /* 30天的改变.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "30天的改变.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C89522205614C0004D8906 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88C89524205614C0004D8906 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +64,7 @@
 			children = (
 				88C89526205614C0004D8906 /* 30DaysOfChange.storyboard */,
 				88C8953E2057B7B4004D8906 /* PomdoroViewController.swift */,
+				8809AD1E20590AF3003CD105 /* Pomodoro.swift */,
 				88C89522205614C0004D8906 /* AppDelegate.swift */,
 				88C89524205614C0004D8906 /* ViewController.swift */,
 				88C89537205614DA004D8906 /* Supporting Files */,
@@ -70,6 +75,7 @@
 		88C89537205614DA004D8906 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8809AD1C205909F0003CD105 /* CProgressView.swift */,
 				88C8952C205614C0004D8906 /* Assets.xcassets */,
 				88C89531205614C0004D8906 /* Info.plist */,
 				88C89529205614C0004D8906 /* _0____.xcdatamodeld */,
@@ -167,9 +173,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8809AD1D205909F1003CD105 /* CProgressView.swift in Sources */,
 				88C89525205614C0004D8906 /* ViewController.swift in Sources */,
 				88C8953F2057B7B4004D8906 /* PomdoroViewController.swift in Sources */,
 				88C8952B205614C0004D8906 /* _0____.xcdatamodeld in Sources */,
+				8809AD1F20590AF3003CD105 /* Pomodoro.swift in Sources */,
 				88C89523205614C0004D8906 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
