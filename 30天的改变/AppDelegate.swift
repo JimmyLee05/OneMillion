@@ -4,7 +4,7 @@
 //
 //  Created by 李南君 on 2018/3/12.
 //  Copyright © 2018年 JimmyLee. All rights reserved.
-//
+//  swiftlint:disable line_length
 
 import UIKit
 import CoreData
@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
 
-    // swiftlint:disable line_length
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
