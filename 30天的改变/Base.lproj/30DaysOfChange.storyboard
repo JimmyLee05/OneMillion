@@ -103,6 +103,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cLr-bW-kec"/>
+                    <connections>
+                        <outlet property="TimerView" destination="9BX-4u-myf" id="4ed-ht-5bB"/>
+                        <outlet property="round" destination="3xl-2N-5Kh" id="ejq-yR-kdV"/>
+                        <outlet property="timerView" destination="Rud-Gq-hiA" id="WSz-Fk-jub"/>
+                        <outletCollection property="round" destination="3xl-2N-5Kh" id="jbQ-mv-IZg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xHf-wh-Kyt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="VNB-cQ-RKm">
