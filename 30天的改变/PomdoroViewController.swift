@@ -70,10 +70,8 @@ class PomodoroViewController: UIViewController, UINavigationControllerDelegate {
         //在有任务的情况下显示并设置当前任务
         if withTask {
             if task.count > 0 {
-                for i in 0...task.count - 1 {
-                    where task[i][3] == "1" {
-                        taskLabel.text = task[i][1]
-                    }
+                for i in 0...task.count - 1 where task[i][3] == "1" {
+                    taskLabel.text = task[i][1]
                 }
             } else {
                 withTask = false
