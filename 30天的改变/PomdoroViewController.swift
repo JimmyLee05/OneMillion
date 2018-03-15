@@ -41,6 +41,26 @@ class PomodoroViewController: UIViewController, UINavigationControllerDelegate {
         tapToStop.addTarget(self, action: #selector(PomodoroViewController.stopPomo(_:)))
         let pressToStart = UILongPressGestureRecognizer()
         pressToStart.addTarget(self, action: #selector(PomodoroViewController.startPomo(_:)))
+
+        timerViewController.addGestureRecognizer(tapToStop)
+        timerViewController.addGestureRecognizer(pressToStart)
+        updateUI()
+
+        if getDefaults("main.isFirst") != nil {
+            //默认存储设置
+            isFirst = getDefaults("main.isFirst") as? Bool ?? true
+            isDisableLockScreen = getDefaults("main.isDisableLockScreen") as? Bool ?? true
+            withTask = getDefaults("main.withTask") as? Bool ?? false
+            task = getDefaults("main.task") as? <String> ?? [[String]]()
+        } else {
+            setDefaults ("main.isFirst", value: true as AnyObject)
+            setDefaults ("main.isDisableLockScreen", value: isDisableLockScreen as AnyObject)
+            setDefaults ("main.withTask", value: withTask as AnyObject)
+            setDefaults ("main.task", value: task as AnyObject)
+        }
+
+        let app = UIApplication.shared
+        app.isIdleTimerDisabled = isDisableLockScreen
     }
 
     func updateUI() {
@@ -118,4 +138,18 @@ class PomodoroViewController: UIViewController, UINavigationControllerDelegate {
         timer = nil
     }
     //动画部分End－－－－－－－－－－
+
+    func getDefaults (_ key: String) -> AnyObject? {
+        if key != "" {
+            return defaults.object(forKey: key) as AnyObject
+        } else {
+            return nil
+        }
+    }
+
+    func setDefaults (_ key: String, value: AnyObject) {
+        if key != "" {
+            defaults.set(value, forKey: key)
+        }
+    }
 }

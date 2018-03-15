@@ -9,8 +9,15 @@
 import UIKit
 import CoreData
 
+var isFirst = true
+var isDisableLockScreen = false
 var needStop = false
 var pomodoroClass = pomodoro()
+
+//数据存储方式，直接存一个数组
+var withTask = false
+var task = [[String]]()
+var taskChanged = false
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
