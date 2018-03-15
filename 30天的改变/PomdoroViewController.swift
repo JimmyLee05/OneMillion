@@ -17,7 +17,7 @@ class PomodoroViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var timerViewController: UIView!
 
-    var starbreak = false
+    var startbreak = false
     var aniDirection = false
     var timer: Timer?
 
@@ -125,7 +125,24 @@ class PomodoroViewController: UIViewController, UINavigationControllerDelegate {
     }
 
     @objc func pomoing(_ timer: Timer) { //调整进度条
-
+        process = pomodoroClass.process
+        if withTask {
+            if pomodoroClass.pomoMode = 2 || pomodoroClass.pomoMode == 3 {
+                if !startbreak {
+                    startbreak = true
+                    setDefaults("main.task", value: task as AnyObject)
+                }
+            }
+            if pomodoroClass.pomoMode == 1 {
+                startbreak = false
+            }
+        }
+        if pomodoroClass.pomoMode == 2 || pomodoroClass.pomoMode == 3 {
+            taskLabel.textColor = colorGray
+        }
+        if pomodoroClass.pompMode == 1 || pomodoroClass.pomoMode == 0 {
+            taskLabel.textColor = taskColor
+        }
     }
 
     //动画部分Start－－－－－－－－－－
@@ -181,6 +198,17 @@ class PomodoroViewController: UIViewController, UINavigationControllerDelegate {
     func setDefaults (_ key: String, value: AnyObject) {
         if key != "" {
             defaults.set(value, forKey: key)
+        }
+    }
+
+    func navigationController (_ navigationController: UINavigationController,
+                               animationControllerFor operation: UINavigationControllerOperation,
+                               from fromVC: UIViewController,
+                               to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if operation == UINavigationControllerOperation.push {
+            return AnimationToList()
+        } else {
+            return nil
         }
     }
 }

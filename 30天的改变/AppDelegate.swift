@@ -20,7 +20,12 @@ var task = [[String]]()
 var taskChanged = false
 
 //Colors
-let taskColor = UIColor(red: 202/255, green: 105/255, blue: 105/255, alpha: 1)
+let colorGray   = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)
+let colorRed    = UIColor(red: 255/255, green: 121/255, blue: 100/255, alpha: 1)
+let colorYellow = UIColor(red: 255/255, green: 188/255, blue: 103/255, alpha: 1)
+let colorBlue   = UIColor(red: 155/255, green: 193/255, blue: 224/255, alpha: 1)
+let colorPink   = UIColor(red: 226/255, green: 128/255, blue: 228/255, alpha: 1)
+let taskColor   = UIColor(red: 202/255, green: 105/255, blue: 105/255, alpha: 1)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
