@@ -63,6 +63,28 @@ class PomodoroViewController: UIViewController, UINavigationControllerDelegate {
         app.isIdleTimerDisabled = isDisableLockScreen
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.delegate = self
+
+        //在有任务的情况下显示并设置当前任务
+        if withTask {
+            if task.count > 0 {
+                for i in 0...task.count - 1 {
+                    where task[i][3] == "1" {
+                        taskLabel.text = task[i][1]
+                    }
+                }
+            } else {
+                withTask = false
+                setDefaults("main.withTask", value: withTask as AnyObject)
+                taskLabel.text = NSLocalizedString("Start with a task", comment: "Start with a task")
+            }
+        } else {
+            taskLabel.text = NSLocalizedString("Start with a task", comment: "Start with a task")
+        }
+    }
+
     func updateUI() {
         timerView.setNeedsDisplay()
         timeLabel.text = pomodoroClass.timerLabel
@@ -70,6 +92,9 @@ class PomodoroViewController: UIViewController, UINavigationControllerDelegate {
 
     @objc func stopPomo(_ sender: UITapGestureRecognizer) {
         pomodoroClass.stop()
+        stopTimer()
+        process = 0
+        taskLabel.textColor = taskColor
     }
 
     @objc func startPomo(_ sender: UILongPressGestureRecognizer) {
@@ -88,6 +113,14 @@ class PomodoroViewController: UIViewController, UINavigationControllerDelegate {
                                                  selector: #selector(PomodoroViewController.pomoing(_:)),
                                                  userInfo: nil,
                                                  repeats: true)
+                }
+            } else if sender.state == UIGestureRecognizerState.began {
+                if pomodoroClass.pomoMode == 0 {
+                    taskLabel.textColor = taskColor
+                    needStop = false
+                    pomodoroClass.playSound(1)
+                    stopTimer()
+                    processToFull()
                 }
             }
         }

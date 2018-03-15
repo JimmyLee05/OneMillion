@@ -19,6 +19,9 @@ var withTask = false
 var task = [[String]]()
 var taskChanged = false
 
+//Colors
+let taskColor = UIColor(red: 202/255, green: 105/255, blue: 105/255, alpha: 1)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
