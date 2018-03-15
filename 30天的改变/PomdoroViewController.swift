@@ -51,7 +51,7 @@ class PomodoroViewController: UIViewController, UINavigationControllerDelegate {
             isFirst = getDefaults("main.isFirst") as? Bool ?? true
             isDisableLockScreen = getDefaults("main.isDisableLockScreen") as? Bool ?? true
             withTask = getDefaults("main.withTask") as? Bool ?? false
-            task = getDefaults("main.task") as? <String> ?? [[String]]()
+            task = getDefaults("main.task") as? [[String]] ?? [[String]]()
         } else {
             setDefaults ("main.isFirst", value: true as AnyObject)
             setDefaults ("main.isDisableLockScreen", value: isDisableLockScreen as AnyObject)
